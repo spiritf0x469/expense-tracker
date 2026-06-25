@@ -32,3 +32,27 @@ def get_expenses():
             "website":expense.website
         })
     return jsonify(result),200
+@expense_bp.route("/<int:id>",methods=["DELETE"])
+@jwt_required()
+def delete_expense(id):
+    user_id=int(get_jwt_identity())
+    expense=Expense.query.filter_by(id=id,user_id=user_id).first()
+    if not expense:
+        return jsonify({"message":"expense not found"}),404
+    db.session.delete(expense)
+    db.session.commit()
+    return jsonify({"message":"expense deleted"}),200
+@expense_bp.route("/<int:id>",methods=["PUT"])
+@jwt_required()
+def update_expense(id):
+    user_id=int(get_jwt_identity())
+    expense=Expense.query.filter_by(id=id,user_id=user_id).first()
+    if not expense:
+        return jsonify({"message":"expense not found"}),404
+    data=request.get_json()
+    expense.item_name=data.get("item_name",expense.item_name)
+    expense.price=data.get("price",expense.price)
+    expense.category=data.get("category",expense.category)
+    expense.website=data.get("website",expense.website)
+    db.session.commit()
+    return jsonify({"message":"expense updated"}),200
