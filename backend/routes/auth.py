@@ -1,7 +1,7 @@
 from flask import Blueprint,request,jsonify
 from werkzeug.security import generate_password_hash,check_password_hash
 from models import db,User
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token,jwt_required,get_jwt_identity
 auth_bp=Blueprint("auth",__name__)
 @auth_bp.route("/register",methods=["POST"])
 def register():
@@ -38,4 +38,11 @@ def login():
             return jsonify({"message":"incorrect password!"}),400
     else:
         return jsonify({"message":"user doesn't exist!"}),400
-    
+@auth_bp.route("/profile",methods=["GET"])
+@jwt_required()
+def profile():
+    user_id=get_jwt_identity()
+    return jsonify({
+        "message":"access granted",
+        "user_id":user_id
+    }),200
