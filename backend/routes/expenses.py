@@ -30,7 +30,8 @@ def get_expenses():
             "price":expense.price,
             "category":expense.category,
             "website":expense.website,
-            "created_at":expense.created_at
+            "created_at":expense.created_at,
+            "updated_at":expense.updated_at
         })
     return jsonify(result),200
 @expense_bp.route("/<int:id>",methods=["DELETE"])
@@ -57,3 +58,52 @@ def update_expense(id):
     expense.website=data.get("website",expense.website)
     db.session.commit()
     return jsonify({"message":"expense updated"}),200
+@expense_bp.route("/summary",methods=["GET"])
+@jwt_required()
+def expense_summary():
+    user_id=int(get_jwt_identity())
+    expenses=Expense.query.filter_by(user_id=user_id).all()
+    total_expenses=len(expenses)
+    # new
+    total_spent=sum(expense.price for expense in expenses)
+    average_expense=0
+    if total_expenses:
+        average_expense=total_spent/total_expenses
+    return jsonify({
+        "total_expenses":total_expenses,
+        "total_spent":total_spent,
+        "average_expense":round(average_expense,2)
+    }),200
+@expense_bp.route("/category-summary",methods=["GET"])
+@jwt_required()
+def category_summary():
+    user_id=int(get_jwt_identity())
+    expenses=Expense.query.filter_by(user_id=user_id).all()
+    categories={}
+    for expense in expenses:
+        if expense.category in categories:
+            categories[expense.category]+=expense.price
+        else:
+            categories[expense.category]=expense.price
+    return jsonify(categories),200
+@expense_bp.route("/recent",methods=["GET"])
+@jwt_required()
+def recent_expenses():
+    user_id=int(get_jwt_identity())
+    expenses=Expense.query\
+        .filter_by(user_id=user_id)\
+        .order_by(Expense.created_at.desc())\
+        .limit(5)\
+        .all()
+    result=[]
+    for expense in expenses:
+        result.append({
+            "id":expense.id,
+            "item_name":expense.item_name,
+            "price":expense.price,
+            "category":expense.category,
+            "website":expense.website,
+            "created_at":expense.created_at,
+            "updated_at":expense.updated_at
+        })
+    return jsonify(result),200
