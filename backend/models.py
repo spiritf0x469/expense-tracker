@@ -15,3 +15,4 @@ class Expense(db.Model):
     price=db.Column(db.Float,nullable=False)
     category=db.Column(db.String(50),nullable=False)
     website=db.Column(db.String(100))
+    created_at=db.Column(db.DateTime,default=db.func.now())

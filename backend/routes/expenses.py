@@ -29,7 +29,8 @@ def get_expenses():
             "item_name":expense.item_name,
             "price":expense.price,
             "category":expense.category,
-            "website":expense.website
+            "website":expense.website,
+            "created_at":expense.created_at
         })
     return jsonify(result),200
 @expense_bp.route("/<int:id>",methods=["DELETE"])
