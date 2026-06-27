@@ -1,0 +1,7 @@
+dpg-d8vpom6rnols73e0dhj0-a
+5432
+expense_tracker_3hjb
+expense_tracker_3hjb_user
+m4FAoAkdayUsO5kZNIKDIFnPKZZOm72A
+postgresql://expense_tracker_3hjb_user:m4FAoAkdayUsO5kZNIKDIFnPKZZOm72A@dpg-d8vpom6rnols73e0dhj0-a.singapore-postgres.render.com/expense_tracker_3hjb
+https://expense-tracker-api-vpql.onrender.com
