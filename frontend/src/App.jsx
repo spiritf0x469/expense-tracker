@@ -4,12 +4,12 @@ import Register from "./pages/Register"
 import Dashboard from "./pages/Dashboard"
 import Expenses from "./pages/Expenses"
 import ProtectedRoute from "./components/ProtectedRoute"
+import Home from "./pages/Home"
 function App() {
   return(
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
+          <Route path="/" element={<Home/>}/>
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard/>
