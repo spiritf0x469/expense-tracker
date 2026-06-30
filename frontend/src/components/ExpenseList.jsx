@@ -8,8 +8,8 @@ function ExpenseList({recentExpenses,handleEdit,handleDelete}){
                         <h3>{expense.item_name}</h3>
                         <p>₹{expense.price}</p>
                     </div>
-                    <div className="expense-buttons">
-                        <button className="edit-btn" onClick={()=>handleEdit(expense)}>Edit</button><button className="delete-btn" onClick={()=>handleDelete(expense.id)}>Delete</button>
+                    <div className="expense-actions">
+                        <button className="edit-btn" onClick={()=>handleEdit(expense)}>✏️ Edit</button><button className="delete-btn" onClick={()=>handleDelete(expense.id)}>🗑️ Delete</button>
                     </div>
                 </div>
             ))

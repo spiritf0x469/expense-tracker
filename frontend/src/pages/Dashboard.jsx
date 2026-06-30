@@ -5,6 +5,7 @@ import Summary from "../components/Summary"
 import ExpenseList from "../components/ExpenseList"
 import ExpenseForm from "../components/ExpenseForm"
 import "../styles/Dashboard.css"
+import Navbar from "../components/Navbar"
 function Dashboard(){
     const [summary,setSummary]=useState({})
     const [recentExpenses,setRecentExpenses]=useState([])
@@ -70,7 +71,7 @@ function Dashboard(){
     },[])
     return(
         <div className="dashboard">
-            <h1>Dashboard</h1>
+            <Navbar handleLogout={handleLogout}/>
             <Summary summary={summary}/>
             <ExpenseList recentExpenses={recentExpenses}
             handleEdit={handleEdit}
@@ -79,7 +80,6 @@ function Dashboard(){
             item_name={item_name}price={price}category={category}website={website}editingId={editingId}
             setItem_name={setItem_name}setPrice={setPrice}setCategory={setCategory}setWebsite={setWebsite}/>
             <br />
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
         </div>
     )
 }

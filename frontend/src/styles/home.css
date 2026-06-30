@@ -1,0 +1,125 @@
+.home{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:24px;
+    background:#0d1117;
+}
+
+.auth-card{
+    width:430px;
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.auth-card h1{
+    text-align:center;
+    color:#facc15;
+    font-size:34px;
+    font-weight:700;
+    margin:0 0 14px;
+}
+
+.hero-text{
+    text-align:center;
+    color:#8b949e;
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.auth-buttons{
+    display:flex;
+    gap:12px;
+    margin-bottom:32px;
+}
+
+.auth-buttons button{
+    flex:1;
+    padding:13px;
+    background:#21262d;
+    color:#8b949e;
+    border:1px solid #30363d;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.auth-buttons button:hover{
+    border-color:#facc15;
+    color:#facc15;
+}
+
+.auth-buttons .active{
+    background:#facc15;
+    color:#111827;
+    border-color:#facc15;
+}
+
+.auth-card h2{
+    text-align:center;
+    color:#f8fafc;
+    font-size:28px;
+    font-weight:700;
+    margin:0 0 28px;
+}
+
+.auth-card form{
+    display:flex;
+    flex-direction:column;
+}
+
+.auth-card input{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    background:#21262d;
+    color:#ffffff;
+    border:1px solid #30363d;
+    border-radius:10px;
+    font-size:15px;
+    transition:.25s;
+}
+
+.auth-card input::placeholder{
+    color:#8b949e;
+}
+
+.auth-card input:focus{
+    outline:none;
+    border-color:#facc15;
+    box-shadow:0 0 12px rgba(250,204,21,.25);
+}
+
+.auth-card form button{
+    width:100%;
+    padding:14px;
+    margin-top:8px;
+    background:#facc15;
+    color:#111827;
+    border:none;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.auth-card form button:hover{
+    background:#eab308;
+    transform:translateY(-2px);
+}
+
+.footer-text{
+    margin-top:30px;
+    text-align:center;
+    color:#6e7681;
+    font-size:13px;
+    line-height:1.7;
+}
