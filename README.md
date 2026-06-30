@@ -4,7 +4,7 @@ a full stack expense tracker web application built with react, flask and postgre
 
 ## 🚀 live demo
 
-🌐 **frontend:** https://expense-tracker-spiritf0x.vercel.app
+🌐 **frontend:** https://expense-tracker-omega-snowy.vercel.app/
 
 🔧 **backend:** https://expense-tracker-api-vpql.onrender.com
 
