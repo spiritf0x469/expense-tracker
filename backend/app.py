@@ -6,7 +6,7 @@ from routes.auth import auth_bp
 from routes.expenses import expense_bp
 from flask_cors import CORS
 app=Flask(__name__)
-CORS(app,origins=["http://localhost:5173","https://expense-tracker-omega-snowy.vercel.app"])
+CORS(app)
 app.register_blueprint(auth_bp,url_prefix="/api/auth")
 app.register_blueprint(expense_bp,url_prefix="/api/expenses")
 app.config.from_object(Config)
