@@ -2,7 +2,7 @@ from flask import Blueprint,jsonify
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from models import Expense
 analytics_bp=Blueprint("analytics",__name__)
-@analytics_bp.route("/",methods=["GET"])
+@analytics_bp.route("",methods=["GET"])
 @jwt_required()
 def analytcis():
     user_id=get_jwt_identity()
