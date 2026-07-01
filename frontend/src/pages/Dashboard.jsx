@@ -85,15 +85,22 @@ function Dashboard(){
         <div className="dashboard">
             <Navbar handleLogout={handleLogout}/>
             <Summary summary={summary}/>
-            {
+            <div className="dashboard-content">
+                <div className="left-panel">
+                    {
                 analytics && <Analytics data={analytics}/>
             }
+            <h2 className="section-title">💳 Recent Expenses</h2>
             <ExpenseList recentExpenses={recentExpenses}
             handleEdit={handleEdit}
             handleDelete={handleDelete}/>
-            <ExpenseForm handleSubmit={handleSubmit}
+                </div>
+                <div className="right-panel">
+                <ExpenseForm handleSubmit={handleSubmit}
             item_name={item_name}price={price}category={category}website={website}editingId={editingId}
             setItem_name={setItem_name}setPrice={setPrice}setCategory={setCategory}setWebsite={setWebsite}/>
+                </div>
+            </div>
         </div>
     )
 }
