@@ -5,10 +5,19 @@ from flask_jwt_extended import JWTManager
 from routes.auth import auth_bp
 from routes.expenses import expense_bp
 from flask_cors import CORS
+from routes.analytics import analytics_bp
 app=Flask(__name__)
-CORS(app)
+CORS(app,resources={
+        r"/api/*": {
+            "origins": [
+                "http://localhost:5173",
+                r"https://.*\.vercel\.app"
+            ]
+        }
+    })
 app.register_blueprint(auth_bp,url_prefix="/api/auth")
 app.register_blueprint(expense_bp,url_prefix="/api/expenses")
+app.register_blueprint(analytics_bp,url_prefix="/api/analytics")
 app.config.from_object(Config)
 jwt=JWTManager(app)
 db.init_app(app)

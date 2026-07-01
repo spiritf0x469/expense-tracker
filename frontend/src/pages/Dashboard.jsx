@@ -6,6 +6,7 @@ import ExpenseList from "../components/ExpenseList"
 import ExpenseForm from "../components/ExpenseForm"
 import "../styles/Dashboard.css"
 import Navbar from "../components/Navbar"
+import Analytics from "../components/Analytics"
 function Dashboard(){
     const [summary,setSummary]=useState({})
     const [recentExpenses,setRecentExpenses]=useState([])
@@ -14,7 +15,15 @@ function Dashboard(){
     const [category,setCategory]=useState("")
     const [website,setWebsite]=useState("")
     const [editingId,setEditingId]=useState(null)
+    const [analytics,setAnalytics]=useState(null)
     const navigate=useNavigate()
+    const fetchanalytcis=async()=>{
+        try{
+            const analyticsresponse=await api.get("/analytics")
+            setAnalytics(analyticsresponse.data)
+        }
+        catch(error){console.log(error)}
+    }
     const handleLogout=()=>{
         localStorage.removeItem("token")
         navigate("/")
@@ -26,6 +35,7 @@ function Dashboard(){
             else{const response=await api.post("/expenses/",{item_name,price,category,website})}
             fetchSummary()
             fetchRecentExpenses()
+            fetchanalytcis()
             setItem_name("")
             setPrice("")
             setCategory("")
@@ -55,6 +65,7 @@ function Dashboard(){
             console.log(response.data)
             fetchSummary()
             fetchRecentExpenses()
+            fetchanalytcis()
         }
         catch(error){console.log(error)}
     }
@@ -68,18 +79,21 @@ function Dashboard(){
     useEffect(()=>{
         fetchSummary()
         fetchRecentExpenses()
+        fetchanalytcis()
     },[])
     return(
         <div className="dashboard">
             <Navbar handleLogout={handleLogout}/>
             <Summary summary={summary}/>
+            {
+                analytics && <Analytics data={analytics}/>
+            }
             <ExpenseList recentExpenses={recentExpenses}
             handleEdit={handleEdit}
             handleDelete={handleDelete}/>
             <ExpenseForm handleSubmit={handleSubmit}
             item_name={item_name}price={price}category={category}website={website}editingId={editingId}
             setItem_name={setItem_name}setPrice={setPrice}setCategory={setCategory}setWebsite={setWebsite}/>
-            <br />
         </div>
     )
 }
